@@ -63,3 +63,4 @@ E:\CS Soft Solution\authorization, roles, claims and token\authorization_roles_t
 E:\CS Soft Solution\authorization, roles, claims and token\authorization_roles_token\obj\Debug\net5.0\ref\authorization_roles_token.dll
 E:\CS Soft Solution\authorization, roles, claims and token\authorization_roles_token\obj\Debug\net5.0\authorization_roles_token.pdb
 E:\CS Soft Solution\authorization, roles, claims and token\authorization_roles_token\obj\Debug\net5.0\authorization_roles_token.genruntimeconfig.cache
+E:\CS Soft Solution\authorization, roles, claims and token\authorization_roles_token\obj\Debug\net5.0\authorization_roles_token.csprojAssemblyReference.cache

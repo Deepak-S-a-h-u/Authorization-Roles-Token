@@ -1,5 +1,5 @@
 import React from 'react'
-import Employee from './Employee/Employee'
+import Employee from './Employee'
 import Admin from './Admin'
 import Home from './Home'
 import Login from './Login'

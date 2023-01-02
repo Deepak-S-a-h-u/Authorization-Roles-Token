@@ -90,6 +90,19 @@ AddDbContext<ApplicationDbContext>(options => options.UseSqlServer
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "authorization_roles", Version = "v1" });
             });
+
+            //configure for frontend
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "myPolicy", Builder =>
+
+                {
+                    Builder.WithOrigins("http://localhost:3000/")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -101,7 +114,7 @@ AddDbContext<ApplicationDbContext>(options => options.UseSqlServer
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "authorization_roles v1"));
             }
-
+            app.UseCors("myPolicy");
             app.UseHttpsRedirection();
 
             app.UseRouting();
