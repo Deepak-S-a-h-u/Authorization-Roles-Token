@@ -97,7 +97,7 @@ AddDbContext<ApplicationDbContext>(options => options.UseSqlServer
                 options.AddPolicy(name: "myPolicy", Builder =>
 
                 {
-                    Builder.WithOrigins("http://localhost:3000/")
+                    Builder.WithOrigins("http://localhost:3000")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowAnyOrigin();
@@ -114,8 +114,8 @@ AddDbContext<ApplicationDbContext>(options => options.UseSqlServer
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "authorization_roles v1"));
             }
-            app.UseCors("myPolicy");
             app.UseHttpsRedirection();
+            app.UseCors("myPolicy");
 
             app.UseRouting();
             app.UseAuthentication();

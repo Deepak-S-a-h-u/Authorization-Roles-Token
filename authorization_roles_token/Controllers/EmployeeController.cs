@@ -12,7 +12,7 @@ namespace authorization_roles_token.Controllers
 {
     [Route("api/Employee")]
     [ApiController]
- //  [Authorize]
+    [Authorize]
     public class EmployeeController : Controller
     {
         private readonly ApplicationDbContext _context;

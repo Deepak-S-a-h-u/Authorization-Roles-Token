@@ -24,7 +24,7 @@ namespace authorization_roles_token.Controllers
         {
             var user = await _userService.Authenticate(loginViewModel);
             if (user == null)
-                return BadRequest(new { message = "wrong UserName/Password" });
+                return BadRequest(new { status= 0, message = "wrong UserName/Password" });
             return Ok(user);
         }
     }
