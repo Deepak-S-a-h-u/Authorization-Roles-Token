@@ -9,5 +9,7 @@ namespace authorization_roles_token.Utility
     {
         public const string role_Admin = "Admin";
         public const string role_Employee = "Employee";
+        public const string role_Visitor = "Visitor";
+
     }
 }

@@ -5,10 +5,10 @@ function NavBar() {
   const navigate=useNavigate();
   const[user,setUser]=useState();
   useEffect(()=>{
-      let usr=localStorage.getItem("currentUser");
-      if(usr)
+      let userToken=localStorage.getItem("userToken");
+      if(userToken)
       {
-        setUser(usr);
+        setUser(userToken);
       }
   },[]);
   const logout=()=>{
@@ -36,16 +36,22 @@ function NavBar() {
        {/* <Link className='nav-link' to='/employee'>Employee</Link> */}
 
      </li>
-     <li class="nav-item active">
+     
+     {user?(<div/>):(
+      <li class="nav-item active">
        {/* <a class="nav-link" href="designation">Designation</a>  */}
        <Link className='nav-link' to='/login'>Login</Link>
 
      </li>
+      )
+    }
+     
+     
    </ul>
-   {user?(<div/>):(
+   {/* {user?(<div/>):(
       <Link to="/register" class="btn btn-outline-success my-2 my-sm-0">Register</Link>
     )
-    }
+    } */}
     {user?
        (<a onClick={logout} className="btn btn-success">Logout</a>
        ):

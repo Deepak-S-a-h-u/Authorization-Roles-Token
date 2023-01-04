@@ -39,6 +39,8 @@ namespace authorization_roles_token.Services
                     applicationUser.Role = SD.role_Admin;
                 if (await _applicationUserManager.IsInRoleAsync(applicationUser, SD.role_Employee))
                     applicationUser.Role = SD.role_Employee;
+                if (await _applicationUserManager.IsInRoleAsync(applicationUser, SD.role_Visitor))
+                    applicationUser.Role = SD.role_Visitor;
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var key = System.Text.Encoding.ASCII.GetBytes(_appSettings.Secret);
 
@@ -52,6 +54,7 @@ namespace authorization_roles_token.Services
 
                     }),
                     Expires = DateTime.UtcNow.AddHours(30),
+                //    Expires = DateTime.UtcNow.AddSeconds(10),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var token = tokenHandler.CreateToken(tokenDiscriptor);

@@ -12,7 +12,7 @@ namespace authorization_roles_token.Controllers
 {
     [Route("api/Employee")]
     [ApiController]
-    [Authorize]
+    
     public class EmployeeController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,6 +20,7 @@ namespace authorization_roles_token.Controllers
         {
             _context = context;
         }
+        [Authorize]
         [HttpGet]
         public IActionResult GetEmployees()
         {
@@ -27,6 +28,7 @@ namespace authorization_roles_token.Controllers
             return Ok(x);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult SaveEmployees(Employee employee)
         {
             _context.Employees.Add(employee);

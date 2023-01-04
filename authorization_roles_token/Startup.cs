@@ -121,7 +121,7 @@ AddDbContext<ApplicationDbContext>(options => options.UseSqlServer
             app.UseAuthentication();
             app.UseAuthorization();
 
-/*            //Data
+            //Data
             IServiceScopeFactory serviceScopeFactory = app.ApplicationServices.
                GetRequiredService<IServiceScopeFactory>();
             using (IServiceScope scope = serviceScopeFactory.CreateScope())
@@ -130,7 +130,7 @@ AddDbContext<ApplicationDbContext>(options => options.UseSqlServer
                     <RoleManager<ApplicationRole>>();
                 var userManager = scope.ServiceProvider.GetRequiredService
                     <UserManager<ApplicationUser>>();
-                //Create Admin Role
+                /*//Create Admin Role
                 if (!await roleManager.RoleExistsAsync("Admin"))
                 {
                     var role = new ApplicationRole();
@@ -177,10 +177,33 @@ AddDbContext<ApplicationDbContext>(options => options.UseSqlServer
                         await userManager.AddToRoleAsync(user, "Employee");
                     }
                 }*/
-          //  }
+                /*//Create Visitor Role
+                if (!await roleManager.RoleExistsAsync("Visitor"))
+                {
+                    var role = new ApplicationRole();
+                    role.Name = "Visitor";
+                    await roleManager.CreateAsync(role);
+                }
 
 
-            app.UseEndpoints(endpoints =>
+                //    //Create Visitor User
+
+                if (await userManager.FindByNameAsync("visitor") == null)
+                {
+                    var user = new ApplicationUser();
+                    user.UserName = "visitor";
+                    user.Email = "mailto:visitor@gmail.com";
+                    var userPassword = "Admin@123";
+                    var chkuser = await userManager.CreateAsync(user, userPassword);
+                    if (chkuser.Succeeded)
+                    {
+                        await userManager.AddToRoleAsync(user, "Visitor");
+                    }
+                }*/
+            }
+
+
+                app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });

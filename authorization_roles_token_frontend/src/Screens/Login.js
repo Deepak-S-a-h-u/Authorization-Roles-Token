@@ -15,17 +15,13 @@ function Login() {
     axios.post("https://localhost:44395/api/Account/",loginCredentials).then((d) => {
       console.log(d.data)
       var token=d.data.token;
-      localStorage.setItem("currentUser",token);
-      setAuthToken(token);
+      localStorage.setItem("userToken",token);
+      localStorage.setItem("User",d.data.role);
+     
       navigate("/home");
     })
   }
-  const setAuthToken = (token) => {
-    debugger
-    if (token) {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    }
- }
+ 
 
   return (
     <div>
