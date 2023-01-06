@@ -1,6 +1,7 @@
 using authorization_roles_token.Identity;
 using authorization_roles_token.ServiceContract;
 using authorization_roles_token.Services;
+using authorization_roles_token.Utility;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -82,7 +83,11 @@ AddDbContext<ApplicationDbContext>(options => options.UseSqlServer
                     ValidateAudience = false
                 };
             });
-
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("GetClaim", policy => policy.RequireClaim(SD.GetClaim));
+                options.AddPolicy("PostClaim", policy => policy.RequireClaim(SD.PostClaim));
+            });
 
 
             services.AddControllers();

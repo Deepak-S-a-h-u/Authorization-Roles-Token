@@ -11,5 +11,10 @@ namespace authorization_roles_token.Utility
         public const string role_Employee = "Employee";
         public const string role_Visitor = "Visitor";
 
+        public const string GetClaim = "GetClaim";
+        public const string PostClaim = "PostClaim";
+
+
+
     }
 }

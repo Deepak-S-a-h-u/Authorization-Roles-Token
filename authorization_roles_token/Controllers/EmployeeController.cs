@@ -20,7 +20,7 @@ namespace authorization_roles_token.Controllers
         {
             _context = context;
         }
-        [Authorize]
+        [Authorize(Policy ="GetClaim")]
         [HttpGet]
         public IActionResult GetEmployees()
         {
@@ -28,7 +28,7 @@ namespace authorization_roles_token.Controllers
             return Ok(x);
         }
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy ="PostClaim")]
         public IActionResult SaveEmployees(Employee employee)
         {
             _context.Employees.Add(employee);

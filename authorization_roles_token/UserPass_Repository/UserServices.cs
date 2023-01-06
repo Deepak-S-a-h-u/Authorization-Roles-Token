@@ -33,10 +33,14 @@ namespace authorization_roles_token.Services
             {
                 var applicationUser = await _applicationUserManager.FindByNameAsync(loginViewModel.UserName);
                 applicationUser.PasswordHash = "";
+                applicationUser.claim
 
                 //jwt token
                 if (await _applicationUserManager.IsInRoleAsync(applicationUser, SD.role_Admin))
+                {
                     applicationUser.Role = SD.role_Admin;
+                    
+                }
                 if (await _applicationUserManager.IsInRoleAsync(applicationUser, SD.role_Employee))
                     applicationUser.Role = SD.role_Employee;
                 if (await _applicationUserManager.IsInRoleAsync(applicationUser, SD.role_Visitor))
